@@ -12,6 +12,13 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+
+  // load all grunt tasks
+  require('load-grunt-tasks')(grunt);
+  //MODIFIED: add require for connect-modewrite
+  var modRewrite = require('connect-modrewrite');
+
+
   // Automatically load required Grunt tasks
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
@@ -71,26 +78,26 @@ module.exports = function (grunt) {
     connect: {
       options: {
         port: 9000,
-        // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
-        livereload: 35729
+        livereload: 35729,
+        // change this to '0.0.0.0' to access the server from outside
+        hostname: 'localhost'
       },
       livereload: {
         options: {
           open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app)
-            ];
+          base: [
+            '.tmp',
+            '<%= yeoman.app %>'
+          ],
+          // MODIFIED: Add this middleware configuration
+          middleware: function(connect, options) {
+            var middlewares = [];
+
+            middlewares.push(modRewrite(['^[^\\.]*$ /index.html [L]'])); //Matches everything that does not contain a '.' (period)
+            options.base.forEach(function(base) {
+              middlewares.push(connect.static(base));
+            });
+            return middlewares;
           }
         }
       },

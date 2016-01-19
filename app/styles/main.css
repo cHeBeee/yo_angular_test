@@ -94,7 +94,7 @@ body {
   overflow: auto;
   width: 1260px;
   position: absolute;
-  top: 220px;
+  top: 300px;
   bottom: 0;
 
   .btn-pagination {
