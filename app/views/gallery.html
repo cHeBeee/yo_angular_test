@@ -2,7 +2,6 @@
 <input type="text" ng-model="iconsPreview.searchQuery" ng-change="updateSearch()">
 
 <div class="btn-pagination">
-	<!-- <a ng-repeat="item in pages" ng-href="/gallery/{{$index}}"> -->
 	<button
 		ng-repeat="item in pages"	
 		ng-class="{active: currentPage == $index}"
@@ -10,13 +9,11 @@
 		ng-click="goToPage($index)"
 	>{{$index}}
 	</button>
-	<!-- </a> -->
 </div>
 
 <div id="gallery">
 
 	<section>
-		<!-- <figure class="mid" ng-repeat="(i, item) in apiData.licensesInfo.icons.extra.meta.slice(rangeModel.from, rangeModel.to) | filter:iconsPreview.searchQuery"> -->
 		<figure class="mid" ng-repeat="(i, item) in items | filter:iconsPreview.searchQuery">
 			<figcaption>
 				<p>Icon title:</p>
@@ -29,18 +26,4 @@
 		<figure class="empty mid" ng-repeat="e in emptyItems"></figure>
 	</section>
 	</div>
-	<!-- <section>
-		<figure class="mid" ng-repeat="(i, item) in apiData.licensesInfo.icons.extra.meta | filter:iconsPreviewSearch.query" ng-repeat-complete ng-class="!$last ? '' : 'last-item'">
-			<a class="thumb" href="/icons/{{currentStyle}}/{{item.name}}">
-				<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="{{item.name}} {{item.tags}}" title="{{item.name}}" style="width: 64px; height: 64px">
-			</a>
-			<figcaption>
-				Icon title:
-				<h2><a href="/icons/{{currentStyle}}/{{item.name}}"><strong class="name" ng-bind="item.name"></strong></a></h2>
-				Tags for icon:
-				<strong class="tag" ng-bind="item.tags"></strong> Icon number: <strong class="seq" ng-bind="item.seqHash"></strong>
-			</figcaption>
-		</figure>
-		<figure class="empty mid" ng-repeat="e in emptyItems"></figure>
-	</section> -->
 </div>

@@ -48,8 +48,10 @@ angular
   })
   .run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
         // todo: would be proper to change this to decorators of $location and $route
-        $location.updatePath = function (path, keep_previous_path_in_history) {
-          if ($location.path() == path) return;
+        $location.updatePath = function (path, keepHistory) {
+          if ($location.path() === path) {
+            return;
+          }
 
           var routeToKeep = $route.current;
           $rootScope.$on('$locationChangeSuccess', function () {
@@ -60,16 +62,10 @@ angular
           });
 
           $location.path(path);
-          if (!keep_previous_path_in_history) $location.replace();
+          if (!keepHistory) {
+            $location.replace();
+          }
         };
-
-    // var chunk = function(arr, chunkSize) {
-    //   var R = [];
-    //   for (var i=0,len=arr.length; i<len; i+=chunkSize)
-    //     R.push(arr.slice(i,i+chunkSize));
-    //   return R;
-    // };
-
 
     $rootScope.apiData = {
       licensesInfo: {
@@ -94,7 +90,7 @@ angular
         'seqHash': '#' + i
       };
       $rootScope.apiData.licensesInfo.icons.extra.meta.push(item);
-    };
+    }
 
     // $rootScope.galleryItemsPage = chunk($rootScope.galleryItems, 20);
     // $rootScope.galleryItems = [];

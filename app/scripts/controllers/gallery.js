@@ -34,7 +34,7 @@
 		$scope.currentPage = 0;
 	}
 
- 	var _timeout;
+ 	// var _timeout;
  	var showPages = 1;
  	var itemsInPage = 40;
  	var distanceToAddMode = 5;
@@ -47,7 +47,6 @@
  	var topPage;
  	var pageRanges = [];
  	var initPage = $scope.currentPage;
- 	var scrollTop;
 	
 	$scope.items = [];
 
@@ -55,7 +54,7 @@
 		if (newValue === oldValue || $rootScope.iconsPreview.searchQuery.length > 0) {
 			return;
 		}
-		console.log('CHANGE LINK ', newValue, oldValue)
+		console.log('CHANGE LINK ', newValue, oldValue);
 		$location.updatePath('/gallery/' + newValue);
 	});
 
@@ -64,7 +63,7 @@
 	 	$scope.currentPage = initPage = 0; 
 	 	scrollElement.scrollTop = 0;
 		setPages();
-	}
+	};
 
 	$scope.goToPage = function(index) {
 	 	showPages = 1;
@@ -92,12 +91,12 @@
 		 	};
 		 	$scope.items = $scope.items.slice($scope.rangeModel.from, $scope.rangeModel.to);
 	 	}
- 	}
+ 	};
  	setPages();
  	
 	if (parseInt($routeParams.page) > $scope.pages.length) {
 		$location.path('/');
-		$scope.currentPage = 0
+		$scope.currentPage = 0;
 		return;
 	}
 
@@ -156,18 +155,18 @@
 			// return;
  		// }
 	};
-	var nextPage = function() {
- 		$scope.currentPage++;
- 		console.log('NEXT ITEMS');
-	};	
+	// var nextPage = function() {
+ // 		$scope.currentPage++;
+ // 		console.log('NEXT ITEMS');
+	// };	
 
-	var prevPage = function() {
-		$scope.currentPage--;
-		if ($scope.currentPage < 0) {
-			$scope.currentPage = 0;
-		}
-		console.log('PREV ITEMS');
-	};
+	// var prevPage = function() {
+	// 	$scope.currentPage--;
+	// 	if ($scope.currentPage < 0) {
+	// 		$scope.currentPage = 0;
+	// 	}
+	// 	console.log('PREV ITEMS');
+	// };
 
 	var addTopPage = function() {
 		$scope.rangeModel.from -= itemsInPage;
@@ -208,7 +207,7 @@
 		updateWindowSize();
 	});
 
-	$scope.$on("$destroy", function() {
+	$scope.$on('$destroy', function() {
 		unWatch();
 		angular.element(scrollElement).off('scroll');
 		angular.element($window).unbind('resize');
