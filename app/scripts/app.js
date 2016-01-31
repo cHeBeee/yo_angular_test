@@ -42,6 +42,11 @@ angular
         controller: 'ContactCtrl',
         controllerAs: 'contact'
       })
+      .when('/svg', {
+        templateUrl: 'views/svg.html',
+        controller: 'SvgCtrl',
+        controllerAs: 'svg'
+      })
       .otherwise({
         redirectTo: '/'
       });
