@@ -1,3 +1,6 @@
+'use strict';
+/*jshint -W106 */
+
 /*****************************************************************************
 *                                                                            *
 *  SVG Path Rounding Function                                                *
@@ -31,6 +34,8 @@
  *               the previous and next points.
  * @returns A new SVG path string with the rounding
  */
+
+/*jshint evil:true */
 function roundPathCorners(pathString, radius, useFractionalRadius) {
   function moveTowardsLength(movingPoint, targetPoint, amount) {
     var width = (targetPoint.x - movingPoint.x);
@@ -67,7 +72,7 @@ function roundPathCorners(pathString, radius, useFractionalRadius) {
   var pathParts = pathString
     .split(/[,\s]/)
     .reduce(function(parts, part){
-      var match = part.match("([a-zA-Z])(.+)");
+      var match = part.match('([a-zA-Z])(.+)');
       if (match) {
         parts.push(match[1]);
         parts.push(match[2]);
@@ -80,7 +85,7 @@ function roundPathCorners(pathString, radius, useFractionalRadius) {
   
   // Group the commands with their arguments for easier handling
   var commands = pathParts.reduce(function(commands, part) {
-    if (parseFloat(part) == part && commands.length) {
+    if (parseFloat(part) === part && commands.length) {
       commands[commands.length - 1].push(part);
     } else {
       commands.push([part]);
@@ -95,10 +100,10 @@ function roundPathCorners(pathString, radius, useFractionalRadius) {
   if (commands.length > 1) {
     var startPoint = pointForCommand(commands[0]);
     
-    // Handle the close path case with a "virtual" closing line
+    // Handle the close path case with a 'virtual' closing line
     var virtualCloseLine = null;
-    if (commands[commands.length - 1][0] == "Z" && commands[0].length > 2) {
-      virtualCloseLine = ["L", startPoint.x, startPoint.y];
+    if (commands[commands.length - 1][0] === 'Z' && commands[0].length > 2) {
+      virtualCloseLine = ['L', startPoint.x, startPoint.y];
       commands[commands.length - 1] = virtualCloseLine;
     }
     
@@ -111,12 +116,10 @@ function roundPathCorners(pathString, radius, useFractionalRadius) {
       var curCmd = commands[cmdIndex];
       
       // Handle closing case
-      var nextCmd = (curCmd == virtualCloseLine)
-        ? commands[1]
-        : commands[cmdIndex + 1];
+      var nextCmd = (curCmd === virtualCloseLine) ? commands[1] : commands[cmdIndex + 1];
       
       // Nasty logic to decide if this path is a candidite.
-      if (nextCmd && prevCmd && (prevCmd.length > 2) && curCmd[0] == "L" && nextCmd.length > 2 && nextCmd[0] == "L") {
+      if (nextCmd && prevCmd && (prevCmd.length > 2) && curCmd[0] === 'L' && nextCmd.length > 2 && nextCmd[0] === 'L') {
         // Calc the points we're dealing with
         var prevPoint = pointForCommand(prevCmd);
         var curPoint = pointForCommand(curCmd);
@@ -140,11 +143,11 @@ function roundPathCorners(pathString, radius, useFractionalRadius) {
         
         // The curve control points are halfway between the start/end of the curve and
         // the original point
-        var startControl = moveTowardsFractional(curveStart, curPoint, .5);
-        var endControl = moveTowardsFractional(curPoint, curveEnd, .5);
+        var startControl = moveTowardsFractional(curveStart, curPoint, 0.5);
+        var endControl = moveTowardsFractional(curPoint, curveEnd, 0.5);
   
         // Create the curve 
-        var curveCmd = ["C", startControl.x, startControl.y, endControl.x, endControl.y, curveEnd.x, curveEnd.y];
+        var curveCmd = ['C', startControl.x, startControl.y, endControl.x, endControl.y, curveEnd.x, curveEnd.y];
         // Save the original point for fractional calculations
         curveCmd.origPoint = curPoint;
         resultCommands.push(curveCmd);
@@ -157,12 +160,14 @@ function roundPathCorners(pathString, radius, useFractionalRadius) {
     // Fix up the starting point and restore the close path if the path was orignally closed
     if (virtualCloseLine) {
       var newStartPoint = pointForCommand(resultCommands[resultCommands.length-1]);
-      resultCommands.push(["Z"]);
+      resultCommands.push(['Z']);
       adjustCommand(resultCommands[0], newStartPoint);
     }
   } else {
     resultCommands = commands;
   }
   
-  return resultCommands.reduce(function(str, c){ return str + c.join(" ") + " "; }, "");
+  return resultCommands.reduce(function(str, c){ return str + c.join(' ') + ' '; }, '');
 }
+roundPathCorners();
+/*jshint +W106 */
