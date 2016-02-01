@@ -81,6 +81,9 @@ angular
         }
       }
     };
+
+    $rootScope.blaa = false;
+
     $rootScope.iconsPreview = {
       searchQuery: '',
       style: '',

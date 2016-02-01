@@ -69,9 +69,7 @@ function roundPathCorners(pathString, radius, useFractionalRadius) {
   }
   
   // Split apart the path, handing concatonated letters and numbers
-  var pathParts = pathString
-    .split(/[,\s]/)
-    .reduce(function(parts, part){
+  var pathParts = pathString.split(/[,\s]/).reduce(function(parts, part){
       var match = part.match('([a-zA-Z])(.+)');
       if (match) {
         parts.push(match[1]);
