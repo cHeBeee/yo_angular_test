@@ -22,8 +22,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-include="'/images/svg/futuramo-icons-2016-02-01.svg'"></div>
-    <ui-svg></ui-svg>
+    <!-- <div ng-include="'/images/futuramo-icons-2016-02-01.svg'"></div> -->
+    <ui-svg url="/images/futuramo-icons-2016-02-01.svg"></ui-svg>
 
     <div class="header">
       <div class="navbar navbar-default" role="navigation">
@@ -90,8 +90,8 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <script src="scripts/utils/rounding.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/utils/rounding.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
