@@ -42,24 +42,23 @@
 			ng-attr-stroke-width="{{strokeWidth}}"
 			stroke="#ff0000"
 			fill="#ffffff"
-			style="stroke-opacity: 0.4;"
+			style="stroke-opacity: 1;"
 		>
 		</rect>
 		<path transform="translate(16, 16)" fill="#666666" d="M0,0h32v14h-4V4H4v16h10v4H0V0z M14,13l-4-7l-2,4v6h14l-6-6L14,13z M26,9c0-1.656-1.344-3-3-3s-3,1.344-3,3 s1.344,3,3,3S26,10.656,26,9z M29,22c1.657,0,3-1.343,3-3s-1.343-3-3-3s-3,1.343-3,3c0,0.216,0.025,0.425,0.068,0.628l-4.817,2.408 C20.701,21.406,19.902,21,19,21c-1.657,0-3,1.343-3,3s1.343,3,3,3c0.902,0,1.701-0.406,2.251-1.036l4.817,2.408 C26.025,28.575,26,28.784,26,29c0,1.657,1.343,3,3,3s3-1.343,3-3s-1.343-3-3-3c-0.902,0-1.701,0.406-2.251,1.036l-4.817-2.408 C21.975,24.425,22,24.216,22,24s-0.025-0.425-0.068-0.628l4.817-2.408C27.299,21.594,28.098,22,29,22z"></path>
 	</svg>
 
-	<svg viewBox="0 0 64 64">
-		<path
-			ng-attr-transform="translate({{strokeWidth/2}}, {{strokeWidth/2}})"
-			ng-attr-d="{{ roundedPath }}"
-			fill="none"
-			stroke="red"
-			ng-attr-stroke-width="{{strokeWidth}}"
-		/>
+
+	<svg viewBox="0 0 64 64" style="left: -264px; opacity: 0.4;">
+	<!-- <svg viewBox="0 0 64 64"> -->
+		<!-- <path ng-attr-d="{{ roundedPath }}" fill="#ff0000"/> -->
+		<!-- <path ng-attr-d="{{ roundedPathM }}" fill="#e3e3e3" ng-attr-transform="translate({{strokeWidth}}, {{strokeWidth}})"/> -->
+		<!-- <path ng-attr-d="{{ rightRoundedRect(0, 0, 64, 64, 10) }}" fill="#f00000"/> -->
+		<path ng-attr-d="{{ roundedPathTwo }}" fill="#f00000"/>
 	</svg>
 </div>
 
-Round {{strokeRound}}<input type="range" min="0" max="32" step="1" ng-model="strokeRound" style="width: 150px;"/>
+Round {{strokeRound}}<input type="range" min="0" max="32" step="1" ng-model="strokeRound" ng-change=updateRoudn() style="width: 150px;"/>
 Width {{strokeWidth}}<input type="range" min="0" max="12" step="1" ng-model="strokeWidth" style="width: 150px;">
 
 </div>
