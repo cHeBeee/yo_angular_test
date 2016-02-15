@@ -111,7 +111,8 @@ angular.module('yomenTestApp')
       );
       /* jshint ignore:end */
 
-      $scope.roundedPathTwo = $scope.rightRoundedRectTwo(0, 0, 64, 64, $scope.strokeRound, 100, 100, 100, 100);
+      $scope.roundedPathTwo = $scope.rightRoundedRectTwo(0, 0, 64, 64, $scope.strokeRound, 1, 1, 1, 1);
+      $scope.roundedPathTree = $scope.rightRoundedRectTwo(0, 0, 64-($scope.strokeWidth*2), 64-($scope.strokeWidth*2), $scope.strokeRound - ($scope.strokeWidth/2), 1, 1, 1, 1);
 
     };
     $scope.updateRoudn();

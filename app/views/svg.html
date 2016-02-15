@@ -49,16 +49,17 @@
 	</svg>
 
 
-	<svg viewBox="0 0 64 64" style="left: -264px; opacity: 0.4;">
-	<!-- <svg viewBox="0 0 64 64"> -->
+	<!-- <svg viewBox="0 0 64 64" style="left: -264px; opacity: 0.4;"> -->
+	<svg viewBox="0 0 64 64">
 		<!-- <path ng-attr-d="{{ roundedPath }}" fill="#ff0000"/> -->
 		<!-- <path ng-attr-d="{{ roundedPathM }}" fill="#e3e3e3" ng-attr-transform="translate({{strokeWidth}}, {{strokeWidth}})"/> -->
 		<!-- <path ng-attr-d="{{ rightRoundedRect(0, 0, 64, 64, 10) }}" fill="#f00000"/> -->
-		<path ng-attr-d="{{ roundedPathTwo }}" fill="#f00000"/>
+		<path ng-attr-d="{{ roundedPathTwo }}" fill="#004CFF"/>
+		<path ng-attr-d="{{ roundedPathTree }}" fill="#000000" ng-attr-transform="translate({{strokeWidth}}, {{strokeWidth}})"/>
 	</svg>
 </div>
 
 Round {{strokeRound}}<input type="range" min="0" max="32" step="1" ng-model="strokeRound" ng-change=updateRoudn() style="width: 150px;"/>
-Width {{strokeWidth}}<input type="range" min="0" max="12" step="1" ng-model="strokeWidth" style="width: 150px;">
+Width {{strokeWidth}}<input type="range" min="0" max="12" step="1" ng-model="strokeWidth" ng-change=updateRoudn() style="width: 150px;">
 
 </div>
